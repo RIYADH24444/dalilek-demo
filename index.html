@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dalilek App – Interactive Demo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 30px;
+            direction: rtl;
+        }
+        h1, h2 {
+            color: #222;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            background-color: #eef;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>مرحلة 1: اكتشف نفسك</h1>
+    <div class="card">
+        <p>نبدأ معك من الأساس: وش هدفك؟ وش وقتك؟ وش ميولك؟ بناءً على إجابتك، نقترح عليك مسار ريادي يناسبك تمامًا.</p>
+
+        <label>وش هدفك الرئيسي من دخول ريادة الأعمال؟</label>
+        <select id="goal">
+            <option value="freedom">حرية مالية</option>
+            <option value="side">دخل إضافي</option>
+            <option value="passion">بناء مشروع تحبه</option>
+            <option value="not_sure">ماني متأكد</option>
+        </select>
+
+        <label>كم تقدر تخصص من وقت أسبوعيًا للمشروع؟</label>
+        <select id="time">
+            <option value="low">1-3 ساعات</option>
+            <option value="medium">4-10 ساعات</option>
+            <option value="high">أكثر من 10 ساعات</option>
+        </select>
+
+        <label>وش تحب تسوي أو عندك شغف فيه؟</label>
+        <input type="text" id="interest" placeholder="مثال: تصوير، تصميم، تعليم...">
+
+        <button class="button" onclick="showResult()">عرض النتيجة</button>
+
+        <div class="result" id="resultBox" style="display:none;"></div>
+    </div>
+
+    <script>
+        function showResult() {
+            let goal = document.getElementById("goal").value;
+            let time = document.getElementById("time").value;
+            let interest = document.getElementById("interest").value;
+
+            let suggestion = "";
+            if (goal === "freedom" && time === "high") {
+                suggestion = "نقترح عليك البدء بمسار التجارة الإلكترونية (بيع منتج فعلي أو رقمي).";
+            } else if (goal === "side" && time !== "low") {
+                suggestion = "مسار تقديم خدمة بناء على مهارتك ممتاز لك كبداية.";
+            } else if (goal === "passion") {
+                suggestion = "بناء مشروع حول الشيء اللي تحبه ممكن يكون بداية ناجحة وطويلة المدى.";
+            } else {
+                suggestion = "ابدأ بالاستكشاف والتجربة – نساعدك تبني وعيك الريادي خطوة بخطوة.";
+            }
+
+            document.getElementById("resultBox").style.display = "block";
+            document.getElementById("resultBox").innerHTML = `
+                <h3>نتيجتك المبدئية:</h3>
+                <p>${suggestion}</p>
+                <p><strong>ميولك:</strong> ${interest}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
